@@ -1,0 +1,271 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    --drawColor: #222;
+    --drawWidth: 4px;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+width: 1000px;
+margin: 20px auto;
+}
+.container .game-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.container .game-info .category span {
+    color: #009688;
+}
+.container .hangman-content {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+.container .hangman-content .draw {
+    flex: 1;
+    background-color: #eee;
+    min-height: 300px;
+    padding: 20px;
+    position: relative;
+}
+.container .hangman-content .draw .stand {
+    position: absolute;
+    height: 80%;
+    width: var(--drawWidth);
+    background-color: var(--drawColor);
+    left: calc(50% - 2px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+.container .hangman-content .draw .stand::after {
+    content: "";
+    height: var(--drawWidth);
+    background-color: var(--drawColor);
+    width: 100px;
+    bottom: -1px;
+    left: -48px;
+    position: absolute;
+}
+.container .hangman-content .draw .hang {
+    position: absolute;
+    background-color: var(--drawColor);
+    height: var(--drawWidth);
+    width: 50px;
+    left: calc(50% - 2px);
+    top: 40px;
+    display: none;
+}
+.container .hangman-content .draw .hang::after {
+    content: "";
+    background-color: var(--drawColor);
+    width: var(--drawWidth);
+    height: 25px;
+    left: calc(50% + 25px);
+    top: 0px;
+    position: absolute;
+}
+.container .hangman-content .draw .rope {
+    border: 4px dashed var(--drawColor);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    left: calc(50% + 14px);
+    top: 62px;
+    display: none;
+}
+.container .hangman-content .draw .man-head {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid var(--drawColor);
+    position: absolute;
+    left: calc(50% + 25px);
+    top: 72px;
+    display: none;
+}
+.container .hangman-content .draw .man-body {
+    height: 100px;
+    width: var(--drawWidth);
+    background-color: var(--drawColor);
+    position: absolute;
+    left: calc(50% + 48px);
+    top: 120px;
+    display: none;
+}
+.container .hangman-content .draw .man-hand {
+    display: none;
+}
+.container .hangman-content .draw .man-hand::after {
+    content: "";
+    background-color: var(--drawColor);
+    height: var(--drawWidth);
+    width: 40px;
+    position: absolute;
+    transform: rotate(-30deg);
+    left: calc(50% + 49px);
+    top: 150px;
+}
+.container .hangman-content .draw .man-hand::before {
+    content: "";
+    background-color: var(--drawColor);
+    height: var(--drawWidth);
+    width: 40px;
+    position: absolute;
+    transform: rotate(30deg);
+    left: calc(50% + 11px);
+    top: 150px;
+}
+.container .hangman-content .draw .man-leg {
+    display: none;
+}
+.container .hangman-content .draw .man-leg::after {
+    content: "";
+    background-color: var(--drawColor);
+    height: var(--drawWidth);
+    width: 40px;
+    position: absolute;
+    transform: rotate(30deg);
+    left: calc(50% + 48px);
+    top: 226px;
+}
+.container .hangman-content .draw .man-leg::before {
+    content: "";
+    background-color: var(--drawColor);
+    height: var(--drawWidth);
+    width: 40px;
+    position: absolute;
+    transform: rotate(-30deg);
+    left: calc(50% + 12px);
+    top: 226px;
+}
+.hangman-content.wrong-1 .draw .stand {
+    display: block;
+}
+.hangman-content.wrong-2 .draw .hang {
+    display: block;
+}
+.hangman-content.wrong-3 .draw .rope {
+    display: block;
+}
+.hangman-content.wrong-4 .draw .man-head {
+    display: block;
+}
+.hangman-content.wrong-5 .draw .man-body {
+    display: block;
+}
+.hangman-content.wrong-6 .draw .man-hand {
+    display: block;
+}
+.hangman-content.wrong-7 .draw .man-leg {
+    display: block;
+}
+.container .hangman-content .letters {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+.container .hangman-content .letters span {
+    background-color: #009688;
+    width: 50px;
+    height: 50px;
+    color: white;
+    display: flex;
+    font-size: 30px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.container .hangman-content .letters span.clicked {
+    opacity: .2;
+    background-color: var(--drawColor);
+    pointer-events: none;
+}
+.container .guess-letters {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+.container .guess-letters span {
+    background-color: #eee;
+    border-bottom: 2px solid #222;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .guess-letters span.has-space {
+    border-bottom: none;
+    background-color: white;
+    position: relative;
+}
+.container .guess-letters span.has-space::after {
+    content: "";
+    width: 15px;
+    height: var(--drawWidth);
+    background-color: var(--drawColor);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.container .letters.finished {
+    pointer-events: none;
+}
+.win-popup {
+    background-color: #009688;
+    color: white;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px;
+    flex-direction: column;
+}
+.splash {
+    background-color: #009688;
+    color: white;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px;
+    flex-direction: column;
+}
+.text-two {
+    font-size: 50px;
+    background-color: white;
+    padding: 20px;
+    color: #222;
+    border-radius: 5px;
+}
+.win-text {
+    font-size: 50px;
+    background-color: white;
+    padding: 20px;
+    color: #222;
+    border-radius: 5px;
+}

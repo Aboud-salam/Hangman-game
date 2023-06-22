@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="master.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="game-info">
+            <div class="game-name">
+                <div>Hangman Game</div>
+            </div>
+            <div class="category">
+                <div>Category : <span></span></div>
+            </div>
+        </div>
+        <hr>
+        <div class="hangman-content">
+            <div class="draw">
+                <div class="stand"></div>
+                <div class="hang"></div>
+                <div class="rope"></div>
+                <div class="man-head"></div>
+                <div class="man-body"></div>
+                <div class="man-hand"></div>
+                <div class="man-leg"></div>
+            </div>
+            <div class="letters"></div>
+        </div>
+        <div class="guess-letters"></div>
+    </div>
+    <audio src="/sounds/click-error.wav" class="error" preload="auto"></audio>
+    <audio src="/sounds/game-click.wav" class="suc" preload="auto"></audio>
+    <audio src="/sounds/gameOver.wav" class="game-over" preload="auto"></audio>
+    <audio src="/sounds/win.wav" class="win" preload="auto"></audio>
+    <script src="main.js"></script>
+</body>
+</html>
